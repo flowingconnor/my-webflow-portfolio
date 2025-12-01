@@ -65,6 +65,11 @@
 						<img src="images/Logo.svg" loading="lazy" alt="Connor Barrett Logo" class="logo" />
 					</a>
 					
+					<!-- Rotating Wisdom Quotes -->
+					<div class="nav-quote-wrapper">
+						<p id="nav-quote-text" class="nav-quote-text"></p>
+					</div>
+
 					<!-- Mobile Menu Toggle -->
 					<div class="nav-menu-button-wrapper">
 						<button 
@@ -171,7 +176,7 @@
 									<span class="social-text">@flowingconnor</span>
 								</a>
 								<a
-									href="https://www.linkedin.com/in/connorbarrett97/"
+									href="https://www.linkedin.com/in/flowingconnor/"
 									class="social-link linkedin-pill"
 									target="_blank"
 									rel="noopener noreferrer"
@@ -179,7 +184,7 @@
 									<div class="social-icon-wrapper">
 										<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.497C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.226V1.729C24 .774 23.2 0 22.222 0h.003z" fill="white"/></svg>
 									</div>
-									<span class="social-text">@connorbarrett97</span>
+									<span class="social-text">@flowingconnor</span>
 								</a>
 								<a
 									href="mailto:connor.steven.barrett@gmail.com"
@@ -190,7 +195,7 @@
 									<div class="social-icon-wrapper">
 										<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 5.4v13.2c0 1.1-.9 2-2 2H2c-1.1 0-2-.9-2-2V5.4c0-1.1.9-2 2-2h1.4l8.6 5.4 8.6-5.4H22c1.1 0 2 .9 2 2zM12 11L2 4.8v.2l10 6.2 10-6.2v-.2L12 11z" fill="url(#gmailGradient)"/><defs><linearGradient id="gmailGradient" x1="2" y1="5.4" x2="22" y2="18.6" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4285F4"/><stop offset="25%" stop-color="#EA4335"/><stop offset="50%" stop-color="#FBBC04"/><stop offset="75%" stop-color="#34A853"/></linearGradient></defs></svg>
 									</div>
-									<span class="social-text">connor.steven.barrett@gmail.com</span>
+									<span class="social-text">gmail me</span>
 								</a>
 							</div>
 							<div class="hero-button-wrapper">
@@ -1590,6 +1595,7 @@
 			src="js/webflow.js"
 			type="text/javascript"
 		></script>
+		<script src="js/quotes.js" type="text/javascript"></script>
 		
 		<!-- Experience Accordion JavaScript -->
 		<script>
@@ -1982,6 +1988,34 @@
 					console.error('Failed to copy link:', err);
 				});
 			}
+			// Rotating Quotes Logic
+			document.addEventListener('DOMContentLoaded', () => {
+				// Use the 'quotes' array from js/quotes.js
+				const quoteElement = document.getElementById('nav-quote-text');
+				if (!quoteElement || typeof quotes === 'undefined') return;
+
+				let currentQuoteIndex = Math.floor(Math.random() * quotes.length);
+
+				function showNextQuote() {
+					// Fade out
+					quoteElement.style.opacity = 0;
+
+					setTimeout(() => {
+						// Change text
+						quoteElement.textContent = quotes[currentQuoteIndex];
+						currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+						
+						// Fade in
+						quoteElement.style.opacity = 1;
+					}, 500); // Wait for fade out
+				}
+
+				// Initial quote
+				showNextQuote();
+
+				// Rotate every 15 seconds
+				setInterval(showNextQuote, 15000);
+			});
 		</script>
 	</body>
 </html>

@@ -5130,4 +5130,54 @@ nav.navigation,
   }
 }
 
+.nav-quote-wrapper {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 600px; /* Increased from 400px to prevent wrapping */
+  text-align: right;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.nav-quote-text {
+  margin: 0;
+  padding: 0;
+  color: var(--neutral-200);
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  white-space: normal;
+}
+
+@media screen and (max-width: 991px) {
+  .nav-quote-wrapper {
+    display: flex; /* Show on tablet */
+    right: 70px;
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav-quote-wrapper {
+    right: 60px;
+    max-width: 200px; /* Smaller width on mobile */
+  }
+  .nav-quote-text {
+    font-size: 10px; /* Smaller text */
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .nav-quote-wrapper {
+    display: none; /* Hide on very small screens to avoid clutter/overlap */
+  }
+}
+
 
