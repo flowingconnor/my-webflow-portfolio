@@ -5132,16 +5132,19 @@ nav.navigation,
 
 .nav-quote-wrapper {
   position: absolute;
-  right: 80px;
+  left: 0;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
-  max-width: 600px; /* Increased from 400px to prevent wrapping */
-  text-align: right;
-  z-index: 500;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  z-index: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   pointer-events: none;
+  padding: 0 100px;
 }
 
 .nav-quote-text {
@@ -5154,29 +5157,38 @@ nav.navigation,
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   white-space: normal;
+  text-align: center;
+  width: 100%;
 }
 
 @media screen and (max-width: 991px) {
   .nav-quote-wrapper {
-    display: flex; /* Show on tablet */
-    right: 70px;
-    max-width: 300px;
+    display: flex;
+    padding: 0 80px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .nav-quote-wrapper {
-    right: 60px;
-    max-width: 200px; /* Smaller width on mobile */
+    padding: 0 60px;
   }
   .nav-quote-text {
-    font-size: 10px; /* Smaller text */
+    font-size: 10px;
   }
 }
 
 @media screen and (max-width: 479px) {
   .nav-quote-wrapper {
-    display: none; /* Hide on very small screens to avoid clutter/overlap */
+    display: flex;
+    padding: 0 50px;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    max-width: none;
+  }
+  .nav-quote-text {
+    font-size: 10px;
+    line-height: 1.2;
   }
 }
 
