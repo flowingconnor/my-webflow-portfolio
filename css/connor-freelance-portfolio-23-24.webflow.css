@@ -1282,8 +1282,9 @@ blockquote {
 .hero-grid {
   grid-column-gap: 0px;
   grid-row-gap: 10px;
-  grid-template-rows: 486px;
-  grid-template-columns: 2.75fr 1.5fr;
+  grid-template-rows: auto;
+  min-height: 100vh;
+  /* grid-template-columns: 2.75fr 1.5fr; */
   grid-auto-columns: 1fr;
   grid-auto-flow: row;
   align-content: stretch;
@@ -1299,13 +1300,39 @@ blockquote {
   flex-flow: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 128px 24px;
+  padding: 0 24px;
   display: flex;
   overflow: visible;
 }
 
-.hero-image-wrapper {
+.hero-image-wrapper.hero-image-stack {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0; /* Ensure no gaps between stacked images */
+}
+
+.hero-stack-item {
+  flex: 1; /* Each item takes equal vertical space */
   overflow: hidden;
+  position: relative;
+  min-height: 0; /* Crucial for nested flex scrolling/sizing */
+}
+
+.hero-image-stacked {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(89%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+  transform: scale(1.15); /* Slight zoom to crop top/bottom */
+}
+
+.hero-image-stacked:hover {
+  filter: grayscale(100%);
+  transform: scale(1.15); /* Maintain zoom on hover */
 }
 
 .hero-subtitle {
@@ -1314,29 +1341,105 @@ blockquote {
   font-weight: 300;
 }
 
+.hero-subtitle {
+  cursor: default;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.hero-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.social-link.sora-pill,
+.social-link.x-pill,
+.social-link.substack-pill,
+.social-link.instagram-pill,
+.social-link.github-pill,
+.social-link.linkedin-pill,
+.social-link.gmail-pill {
+  height: 40px;
+  padding: 6px 16px 6px 10px;
+  border: 1px solid rgba(245, 248, 248, 0.35);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+
+.social-link.sora-pill:hover,
+.social-link.x-pill:hover,
+.social-link.substack-pill:hover,
+.social-link.instagram-pill:hover,
+.social-link.github-pill:hover,
+.social-link.linkedin-pill:hover,
+.social-link.gmail-pill:hover {
+  border-color: var(--powder-blue);
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.social-icon-wrapper {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--neutral-50-501);
+  letter-spacing: 0.2px;
+}
+
+.social-link:hover .social-text {
+  color: var(--white);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .hero-button-wrapper {
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   flex-flow: wrap;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 24px;
+  padding-bottom: 24px;
   display: flex;
 }
 
 .hero-image {
   width: 100%;
+  height: 100%;
   border: 1px none var(--white);
   opacity: .75;
   filter: brightness(89%);
   cursor: default;
   mix-blend-mode: normal;
   object-fit: cover;
-  margin-left: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  display: inline-block;
-  position: static;
-  overflow: hidden;
+  object-position: center;
+  max-width: 600px; /* Stricter max-width to ensure sharpness */
+  margin: 0 auto;
+  display: block;
+  position: relative;
 }
 
 .hero-image:hover {
@@ -1847,12 +1950,14 @@ blockquote {
   }
 }
 
-/* CLEAN about image - NO GAPS */
+/* CLEAN about image - FIXED POSITIONING */
 .clean-about-image-container {
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   width: 100%;
-  height: 100%;
-  min-height: 100%;
+  height: 100vh;
+  max-height: 100vh;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -1861,7 +1966,6 @@ blockquote {
 .clean-about-image {
   width: 100%;
   height: 100%;
-  min-height: 100%;
   object-fit: cover;
   object-position: center;
   mix-blend-mode: luminosity;
