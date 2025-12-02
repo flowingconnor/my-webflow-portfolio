@@ -1348,10 +1348,11 @@ blockquote {
 }
 
 .hero-social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(72px, auto);
+  gap: 16px;
+  align-items: stretch;
   margin-top: 24px;
 }
 
@@ -1362,15 +1363,18 @@ blockquote {
 .social-link.github-pill,
 .social-link.linkedin-pill,
 .social-link.gmail-pill {
-  height: 40px;
-  padding: 6px 16px 6px 10px;
-  border: 1px solid rgba(245, 248, 248, 0.35);
-  border-radius: 20px;
+  height: 100%;
+  min-height: 72px;
+  padding: 16px 20px;
+  border: 1px solid rgba(245, 248, 248, 0.25);
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   text-decoration: none;
-  transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease;
+  background-color: rgba(255, 255, 255, 0.02);
+  transition: transform 200ms ease, border-color 200ms ease, background-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .social-link.sora-pill:hover,
@@ -1380,17 +1384,27 @@ blockquote {
 .social-link.github-pill:hover,
 .social-link.linkedin-pill:hover,
 .social-link.gmail-pill:hover {
-  border-color: var(--powder-blue);
-  background-color: rgba(255, 255, 255, 0.05);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.45);
+  background-color: rgba(255, 255, 255, 0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(10, 12, 24, 0.55);
 }
 
 .social-icon-wrapper {
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 248, 248, 0.35);
+  background-color: rgba(6, 9, 22, 0.6);
+  flex-shrink: 0;
+}
+
+.social-icon-wrapper svg {
+  width: 22px;
+  height: 22px;
 }
 
 .social-text {
@@ -1398,6 +1412,11 @@ blockquote {
   font-weight: 500;
   color: var(--neutral-50-501);
   letter-spacing: 0.2px;
+}
+
+.social-link.nature-plus .social-text {
+  font-size: 12.5px;
+  letter-spacing: 0.05px;
 }
 
 .social-link:hover .social-text {
@@ -5192,10 +5211,8 @@ nav.navigation,
   }
 
   .hero-social-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
   .social-link.sora-pill,
@@ -5205,22 +5222,18 @@ nav.navigation,
   .social-link.github-pill,
   .social-link.linkedin-pill,
   .social-link.gmail-pill {
-    width: 100%;
-    max-width: 100%;
-    padding: 6px 8px 6px 6px;
-    gap: 6px;
-    min-width: 0;
-    overflow: hidden;
+    min-height: 64px;
+    padding: 14px 16px;
+    gap: 10px;
   }
 
   .social-icon-wrapper {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
   }
 
   .social-text {
-    font-size: 12px;
+    font-size: 13px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
