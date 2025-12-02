@@ -19,7 +19,7 @@ This is a **static website** originally designed in Webflow and then customized 
 ## 📁 Project Structure
 
 ```
-flowconnor/
+site/
 ├── index.html             # Main page (single-page application)
 ├── 401.html               # Unauthorized access page
 ├── 404.html               # Page not found
