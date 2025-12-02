@@ -11,15 +11,15 @@ This is a **static website** originally designed in Webflow and then customized 
 - **Frontend**: Vanilla HTML5, CSS3, JavaScript
 - **Design System**: Webflow-generated CSS with custom modifications
 - **Forms**: Formspree API for contact form handling
-- **Hosting**: GitHub Pages
-- **Domain**: Google Domains
+- **Hosting**: Vercel
+- **Domain**: flowconnor.dev (managed via Vercel)
 - **Font Loading**: Google Fonts (Manrope)
 - **Version Control**: Git/GitHub
 
 ## 📁 Project Structure
 
 ```
-my-webflow-portfolio/
+flowconnor/
 ├── index.html             # Main page (single-page application)
 ├── 401.html               # Unauthorized access page
 ├── 404.html               # Page not found
@@ -33,9 +33,10 @@ my-webflow-portfolio/
 │   ├── Cover-Me1*.png     # Profile images (multiple sizes)
 │   ├── project-images/    # Project screenshots
 │   └── travel-photos/     # Personal photography
+├── vercel.json            # Vercel deployment configuration
 └── .github/
     └── workflows/
-        └── static.yml     # GitHub Pages deployment
+        └── static.yml     # GitHub Pages deployment (legacy)
 ```
 
 ## 🎨 Design System
@@ -105,15 +106,20 @@ npx serve .                 # Node.js
 ```
 
 ### Deployment Pipeline
-Automated via **GitHub Actions**:
+Automated via **Vercel**:
 
-```yaml
-# .github/workflows/static.yml
-name: Deploy static content to Pages
-on:
-  push:
-    branches: ["main"]
-# Deploys to: https://connorbarrett.dev
+- **Automatic Deployments**: Every push to `main` branch triggers a new deployment
+- **Preview Deployments**: Pull requests get preview URLs automatically
+- **Configuration**: `vercel.json` handles routing and security headers
+- **Live Site**: [flowconnor.dev](https://flowconnor.dev)
+
+To deploy manually:
+```bash
+# Install Vercel CLI (if not already installed)
+npm i -g vercel
+
+# Deploy to production
+vercel --prod
 ```
 
 ## 🌐 External Dependencies
@@ -190,7 +196,7 @@ For scaling beyond static hosting:
 
 ## 📞 External Service Links
 
-- **Live Site**: [connorbarrett.dev](https://connorbarrett.dev)
+- **Live Site**: [flowconnor.dev](https://flowconnor.dev)
+- **Vercel Dashboard**: [Project Settings](https://vercel.com/dashboard)
 - **Webflow Preview**: [Design System](https://preview.webflow.com/preview/connor-freelance-portfolio-23-24?utm_medium=preview_link&utm_source=dashboard&utm_content=connor-freelance-portfolio-23-24&preview=db22b4165967bb4708214909a28d8b30&workflow=preview)
 - **Form Management**: [Formspree Dashboard](https://formspree.io/forms/mnqklnog/submissions)
-- **Domain Management**: [Google Domains](https://domains.google.com/registrar/connorbarrett.dev)
